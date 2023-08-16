@@ -1,46 +1,15 @@
 #define _USE_MATH_DEFINES
-#include "matplotlibcpp.h"
-#include "sampled_custom_distribution.hh"
 #include <cmath>
 #include <iostream>
 #include <fstream>
 
+#include "distributions.h"
+#include "matplotlibcpp.h"
+#include "plot.h"
+#include "sampled_custom_distribution.hh"
+
+
 using namespace std;
-namespace plt = matplotlibcpp;
-
-double power_law(double x) {
-    /*
-     * PDF: 1/x -> Power law distribution
-     */
-    return std::log(x); // CDF
-}
-
-double thermal(double x) {
-    /*
-     * PDF: 2x -> Thermal distribution
-     */
-    return x * x; // CDF
-}
-
-double uniform(double x) {
-    /*
-     * PDF: 1 -> Uniform distribution
-     */
-    return x; // CDF
-}
-
-void plot(const vector<double>& hist, long bins=30, string color="k", double alpha=1.0, bool density=false, bool cumulative=false, string parameter="", string units="", string save_file="plot.png") {
-    string ylabel;
-    if (density) { ylabel = "Density"; } else { ylabel = "Frequency"; }
-    if (units != "") { units = " $("+units+")$"; }
-
-    plt::figure_size(1000,500);
-    plt::hist(hist, bins, color, alpha, density, cumulative);
-    plt::xlabel(parameter+units);
-    plt::ylabel(ylabel);
-    plt::title(parameter+" distribution");
-    plt::save(save_file,300);
-}
 
 int main()
 {
