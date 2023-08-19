@@ -73,5 +73,5 @@ class BaseDistribution:
 
         cdf_inv = interpolate.interp1d(cdf, x)
 
-        x_new = np.random.uniform(0.01, 0.99, size=size)
+        x_new = np.random.uniform(0.001, 0.999, size=size)
         return cdf_inv(x_new)
