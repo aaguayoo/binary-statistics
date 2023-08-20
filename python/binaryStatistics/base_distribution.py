@@ -25,7 +25,7 @@ class BaseDistribution:
         """Compute PDF norm."""
         self.norm_factor = (x.max() - x.min()) / len(x)
         if not hasattr(self, "norm"):
-            self.norm = 1.0 / sum(self._pdf(value) * self.norm_factor for value in x)
+            self.norm = 1.0 / np.sum(self._pdf(x) * self.norm_factor)
 
     def cdf(self, x: np.array):
         """Cumulative Distribution Function."""
@@ -73,5 +73,9 @@ class BaseDistribution:
 
         cdf_inv = interpolate.interp1d(cdf, x)
 
-        x_new = np.random.uniform(0.001, 0.999, size=size)
-        return cdf_inv(x_new)
+        try:
+            x_new = np.random.uniform(0.0001, 0.9999, size=size)
+            return cdf_inv(x_new)
+        except ValueError:
+            x_new = np.random.uniform(0.001, 0.999, size=size)
+            return cdf_inv(x_new)
