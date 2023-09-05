@@ -12,6 +12,13 @@ double power_law(double x) {
     return std::log(x); // CDF
 }
 
+double sine(double x) {
+    /*
+     * PDF: sin(x) -> Sine distribution
+     */
+    return -std::cos(x); // CDF
+}
+
 double thermal(double x) {
     /*
      * PDF: 2x -> Thermal distribution

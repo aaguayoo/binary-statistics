@@ -71,7 +71,7 @@ class BaseDistribution:
         x = np.linspace(x_min, x_max, size)
         cdf = self.cdf(x)
 
-        cdf_inv = interpolate.interp1d(cdf, x)
+        cdf_inv = interpolate.interp1d(cdf, x, fill_value="extrapolate")
 
         try:
             x_new = np.random.uniform(0.0001, 0.9999, size=size)

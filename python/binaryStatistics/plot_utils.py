@@ -17,7 +17,7 @@ def plot_histogram(
     """Plot histogram."""
     if pi_factor:
         distribution = distribution
-    _, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots(figsize=figsize)
     _ = ax.hist(distribution, bins=bins, density=density, color=color)
 
     if "label" in x_params:
@@ -46,6 +46,8 @@ def plot_histogram(
 
     if file:
         plt.savefig(file, dpi=300)
+
+    return fig, ax
 
 
 def multiple_formatter(denominator=8, number=np.pi, latex="\\pi"):
