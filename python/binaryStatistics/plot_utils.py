@@ -62,7 +62,7 @@ def multiple_formatter(denominator=8, number=np.pi, latex="\\pi"):
     def _multiple_formatter(x, pos):
         """Multiple formatter."""
         den = denominator
-        num = np.int(np.rint(den * x / number))
+        num = int(np.rint(den * x / number))
         com = gcd(num, den)
         (num, den) = (int(num / com), int(den / com))
         if den == 1:

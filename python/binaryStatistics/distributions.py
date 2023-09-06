@@ -63,3 +63,78 @@ class PowerLaw(BaseDistribution):
     def distribution(self, x):
         """Distribution method."""
         return 1 / x
+
+
+@dataclass
+class VelTilde(BaseDistribution):
+    """V-tilde distribution"""
+
+    dist_parameters: dict = Field(default={})
+
+    def __post_init_post_parse__(self):
+        """Init section."""
+        super().__init__(self.dist_parameters)
+
+    def distribution(self, phi, phi_0, i, e):
+        """Distribution."""
+        temp2 = 1.0 - (np.sin(i) ** 2) * (np.cos(phi - phi_0) ** 2)
+        temp2 = temp2**0.25
+
+        temp1 = e * np.sin(phi_0) - np.sin(phi - phi_0)
+        temp1 = temp1 * temp1
+
+        temp3 = (1.0 + e * e + 2 * e * np.cos(phi) - np.sin(i) * np.sin(i) * temp1) / (
+            1.0 + e * np.cos(phi)
+        )
+        temp3 = np.sqrt(temp3)
+
+        return temp2 * temp3
+
+
+@dataclass
+class PhiAngle(BaseDistribution):
+    """Phi angle distribution."""
+
+    dist_parameters: dict = Field(default={})
+
+    def __post_init_post_parse__(self):
+        """Init section."""
+        super().__init__(self.dist_parameters)
+
+    def distribution(self, phi, e):
+        """Distribution."""
+        return ((1.0 - e**2.0) ** (3.0 / 2.0)) / (
+            2 * np.pi * (1 + e * np.cos(phi)) ** 2
+        )
+
+    def random_sample(self, x_min, x_max, size):
+        """Random sample."""
+        phi_ = []
+        e = self.dist_parameters["e"]
+        for index in range(size):
+            LI = 0
+            while LI < 1:
+                E = e[index]
+                c = (1 - E**2) / (2 * np.pi * (1 - E) ** 2)
+                base = x_max - x_min
+                Phi = np.random.uniform() * base
+                pPhi = np.random.uniform() * c
+                if pPhi <= self.distribution(Phi, E):
+                    LI = 2
+                    phi_.append(Phi)
+        return phi_
+
+
+@dataclass
+class Sine(BaseDistribution):
+    """Sine distribution."""
+
+    dist_parameters: dict = Field(default={})
+
+    def __post_init_post_parse__(self):
+        """Initialize."""
+        super().__init__(self.dist_parameters)
+
+    def distribution(self, i):
+        """Distribution."""
+        return np.sin(i)
