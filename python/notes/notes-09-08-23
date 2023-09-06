@@ -1,0 +1,8 @@
+r = Separación entre las dos estrellas
+r en función de la phase de la órbita.
+r = a(1-e²)/(1+ecos(th)) th dist plana entre -pi y pi.
+th es un parámetro que da la phase de la órbita.
+a muestrada uniformemente (prop/a^-1))
+
+Falta un ángulo entre la separación de las estrellas y la velocidad relativa entre las
+dos estrellas.
