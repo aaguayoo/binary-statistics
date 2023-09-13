@@ -60,9 +60,9 @@ class PowerLaw(BaseDistribution):
         """Init BaseDistribution."""
         super().__init__(self.dist_parameters)
 
-    def distribution(self, x):
+    def distribution(self, x, C, alpha):
         """Distribution method."""
-        return 1 / x
+        return C * x**alpha
 
 
 @dataclass

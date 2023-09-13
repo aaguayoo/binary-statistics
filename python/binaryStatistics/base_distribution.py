@@ -68,7 +68,7 @@ class BaseDistribution:
 
     def random_sample(self, x_min: float, x_max: float, size: int):
         """Random sample distribution."""
-        x = np.linspace(x_min, x_max, size)
+        x = np.linspace(x_min, x_max, 10_000)
         cdf = self.cdf(x)
 
         cdf_inv = interpolate.interp1d(cdf, x, fill_value="extrapolate")
