@@ -66,6 +66,22 @@ class PowerLaw(BaseDistribution):
 
 
 @dataclass
+class Log(BaseDistribution):
+    """Power law distribution class."""
+
+    alpha = -1
+    dist_parameters: dict = Field(default={})
+
+    def __post_init_post_parse__(self):
+        """Init BaseDistribution."""
+        super().__init__(self.dist_parameters)
+
+    def distribution(self, x):
+        """Distribution method."""
+        return x**self.alpha
+
+
+@dataclass
 class VelTilde(BaseDistribution):
     """V-tilde distribution"""
 
