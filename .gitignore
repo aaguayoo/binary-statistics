@@ -36,3 +36,9 @@
 
 # Compiled
 main
+
+# .old
+.old/
+
+# Poetry
+poetry.lock
