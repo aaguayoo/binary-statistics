@@ -42,3 +42,6 @@ main
 
 # Poetry
 poetry.lock
+
+# PyCache
+__pycache__/
