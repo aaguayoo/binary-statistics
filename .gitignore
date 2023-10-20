@@ -45,3 +45,6 @@ poetry.lock
 
 # PyCache
 __pycache__/
+
+# VSCode
+.vscode/
