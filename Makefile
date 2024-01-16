@@ -13,7 +13,7 @@ JUPYTERLAB=${JUPYTERLAB_DIR}
 ## Init
 #######
 ifdef SHELL_PROFILE_PATH
-init: poetry
+init: toronja poetry
 	@[ -f ./jenkins_pr.yml ] && mkdir .github && mkdir .github/workflows && mv jenkins_pr.yml .github/workflows/ || true
 	@echo "Running shell..."
 	@poetry shell
@@ -24,6 +24,18 @@ init:
 	echo "export SHELL_PROFILE_PATH='${HOME}/$$PROFILE'" >> ~/$$PROFILE; \
 	echo "\033[0;33mSource your profile\033[0m";
 endif
+
+###############
+## Toronja-Asus
+###############
+toronja:
+	@echo ""
+	@(ascii-image-converter -C -c /home/aaguayoo/Imágenes/logo.png -f -n -m " toronjaasustoronjaasus") || true
+	@echo ""
+	@echo "\033[1;39m############################\033[0m"
+	@echo "\033[1;39m######### RESEARCH #########\033[0m"
+	@echo "\033[1;39m############################\033[0m"
+	@echo ""
 
 ##########
 ## Aliases
