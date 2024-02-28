@@ -5,7 +5,7 @@ from pydantic.dataclasses import dataclass
 from sympy import Piecewise
 from sympy.core.symbol import Symbol
 
-from binaryStatistics.base_distribution import BaseDistribution
+from binaryStatistics.orbital_distributions.base_distribution import BaseDistribution
 
 
 @dataclass
